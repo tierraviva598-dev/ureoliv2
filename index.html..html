@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ureoliv | Abogados Migratorios — Gurabo, Santiago</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:    #0a1628;
+      --gold:    #c8a96e;
+      --gold-lt: #e2c99a;
+      --cream:   #f5f0e8;
+      --white:   #ffffff;
+      --gray:    #8a8a8a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 5vw;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,169,110,0.18);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.75;
+      transition: opacity 0.25s, color 0.25s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: 7rem 5vw 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Radial glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      width: 70vw; height: 70vw;
+      background: radial-gradient(ellipse, rgba(200,169,110,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,169,110,0.4);
+      padding: 0.45rem 1.4rem;
+      border-radius: 100px;
+      margin-bottom: 2.2rem;
+      animation: fadeUp 0.8s 0.2s both;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.8s 0.4s both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+      opacity: 0.65;
+      max-width: 540px;
+      margin: 0 auto 2.8rem;
+      animation: fadeUp 0.8s 0.6s both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.8s both;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.9rem 2.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid rgba(200,169,110,0.55);
+      color: var(--gold);
+      padding: 0.9rem 2.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold-lt); transform: translateY(-2px); }
+
+    /* Decorative line */
+    .divider {
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5vw; }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      max-width: 600px;
+    }
+
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* ── SERVICES ── */
+    #servicios { background: rgba(255,255,255,0.02); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      margin-top: 3.5rem;
+      border: 1px solid rgba(200,169,110,0.12);
+    }
+
+    .service-card {
+      padding: 2.4rem;
+      background: rgba(10,22,40,0.7);
+      border: 1px solid rgba(200,169,110,0.08);
+      transition: background 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .service-card:hover { background: rgba(200,169,110,0.06); border-color: rgba(200,169,110,0.2); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--gold-lt);
+    }
+
+    .service-card p {
+      font-size: 0.78rem;
+      line-height: 1.8;
+      opacity: 0.6;
+    }
+
+    /* ── ABOGADOS ── */
+    #abogados { max-width: 1100px; margin: 0 auto; }
+
+    .attorneys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .attorney-card {
+      border: 1px solid rgba(200,169,110,0.18);
+      padding: 2.8rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .attorney-card:hover { border-color: rgba(200,169,110,0.45); }
+
+    .attorney-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(200,169,110,0.1);
+      position: absolute;
+      top: 1.2rem; right: 1.8rem;
+      line-height: 1;
+    }
+
+    .attorney-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+      color: var(--white);
+    }
+
+    .attorney-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+
+    .attorney-desc {
+      font-size: 0.78rem;
+      line-height: 1.85;
+      opacity: 0.6;
+      margin-bottom: 1.6rem;
+    }
+
+    .attorney-phone {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .attorney-phone:hover { color: var(--gold-lt); }
+    .attorney-phone span { font-size: 1rem; }
+
+    /* ── WHY US ── */
+    #nosotros {
+      background: linear-gradient(135deg, rgba(200,169,110,0.06) 0%, transparent 60%);
+      border-top: 1px solid rgba(200,169,110,0.1);
+      border-bottom: 1px solid rgba(200,169,110,0.1);
+    }
+
+    .why-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-text p {
+      font-size: 0.82rem;
+      line-height: 1.95;
+      opacity: 0.65;
+      margin-top: 1.5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 2rem 1rem;
+      border: 1px solid rgba(200,169,110,0.15);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
+    /* ── CONTACT ── */
+    #contacto { max-width: 900px; margin: 0 auto; text-align: center; }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
+      padding: 2rem;
+      border: 1px solid rgba(200,169,110,0.18);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.25s, border-color 0.25s;
+      display: block;
+    }
+    .contact-card:hover { background: rgba(200,169,110,0.06); border-color: rgba(200,169,110,0.4); }
+
+    .contact-card .icon { font-size: 1.5rem; margin-bottom: 1rem; }
+
+    .contact-card .label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(200,169,110,0.12);
+      padding: 2.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-copy {
+      font-size: 0.68rem;
+      opacity: 0.4;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Ureoliv</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#abogados">Abogados</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Abogados Migratorios · Gurabo, Santiago</span>
+      <h1>Su <em>futuro</em><br>comienza<br>aquí.</h1>
+      <p class="hero-sub">
+        Asesoría legal migratoria de excelencia. Guiamos a familias y empresas
+        a través de cada etapa del proceso migratorio con dedicación, experiencia
+        y resultados comprobados.
+      </p>
+      <div class="hero-ctas">
+        <a href="tel:8094814920" class="btn-primary">Llámenos Ahora</a>
+        <a href="#servicios" class="btn-outline">Nuestros Servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div style="max-width:1100px;margin:0 auto">
+      <p class="section-label">Áreas de Práctica</p>
+      <h2 class="section-title">Soluciones legales <em>integrales</em> en migración</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🛂</div>
+          <h3>Visas de Inmigrante</h3>
+          <p>Residencia permanente, peticiones familiares y laborales. Tramitamos su caso con precisión para garantizar el mejor resultado posible.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✈️</div>
+          <h3>Visas de No Inmigrante</h3>
+          <p>Visas de turismo, estudiante, trabajo temporal (H-1B, L-1, O-1) y visas de negocios. Asesoría especializada para cada categoría.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Naturalización</h3>
+          <p>Le acompañamos en el proceso de ciudadanía: desde la preparación de la solicitud hasta la entrevista final con autoridades migratorias.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚖️</div>
+          <h3>Defensa en Deportación</h3>
+          <p>Representación ante el Tribunal de Inmigración. Defensa sólida y estratégica frente a órdenes de deportación y procedimientos de remoción.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>Asilo y Refugio</h3>
+          <p>Protección para personas que han sufrido persecución. Evaluamos su caso y preparamos una solicitud completa y convincente.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📋</div>
+          <h3>Regularización Migratoria</h3>
+          <p>Ajuste de estatus, DACA, TPS y programas especiales. Le ayudamos a regularizar su situación migratoria de forma segura y eficiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOGADOS -->
+  <section id="abogados">
+    <p class="section-label">Nuestro Equipo</p>
+    <h2 class="section-title">Comprometidos con <em>su causa</em></h2>
+    <div class="attorneys-grid">
+
+      <div class="attorney-card">
+        <div class="attorney-num">01</div>
+        <h3>Julio Daniel<br>Ureña Nova</h3>
+        <p class="attorney-title">Abogado Migratorio</p>
+        <p class="attorney-desc">
+          Con amplia experiencia en derecho migratorio, el Lic. Ureña Nova brinda
+          representación legal de alto nivel, enfocándose en visas de inmigrante,
+          naturalización y defensa en procedimientos de deportación. Su compromiso
+          con cada cliente garantiza un servicio personalizado y resultados concretos.
+        </p>
+        <a href="tel:8094814920" class="attorney-phone">
+          <span>📞</span> 809-481-4920
+        </a>
+      </div>
+
+      <div class="attorney-card">
+        <div class="attorney-num">02</div>
+        <h3>Johanna Milagro<br>Olivo Polanco</h3>
+        <p class="attorney-title">Abogada Migratoria</p>
+        <p class="attorney-desc">
+          La Licda. Olivo Polanco se especializa en casos de reunificación familiar,
+          asilo y regularización migratoria. Su enfoque humano y su profundo
+          conocimiento de la legislación migratoria le permiten orientar a sus
+          clientes con claridad y confianza en los momentos más decisivos.
+        </p>
+        <a href="tel:8096140620" class="attorney-phone">
+          <span>📞</span> 809-614-0620
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOSOTROS / WHY US -->
+  <section id="nosotros">
+    <div class="why-inner">
+      <div class="why-text">
+        <p class="section-label">¿Por qué elegirnos?</p>
+        <h2 class="section-title">Experiencia que <em>transforma</em> vidas</h2>
+        <p>
+          En Ureoliv entendemos que los procesos migratorios no son solo
+          trámites legales: son decisiones que cambian la vida de familias enteras.
+          Por eso, cada caso recibe atención personalizada, estrategia clara y
+          comunicación transparente desde el primer día.
+        </p>
+        <p>
+          Ubicados en Gurabo, Santiago, estamos comprometidos con la comunidad
+          local e internacional, ofreciendo consultas presenciales y virtuales
+          para clientes en toda la República Dominicana y en el exterior.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num">+500</div>
+          <div class="stat-label">Casos resueltos</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Abogados especializados</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Dedicación al cliente</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">RD</div>
+          <div class="stat-label">Con alcance internacional</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <p class="section-label">Contáctenos</p>
+    <h2 class="section-title" style="margin:0 auto;text-align:center">Estamos listos para <em>ayudarle</em></h2>
+    <p style="font-size:0.8rem;opacity:0.55;margin-top:1rem;line-height:1.8">
+      Dé el primer paso hacia su proceso migratorio. Contáctenos hoy mismo para una consulta.
+    </p>
+    <div class="contact-cards">
+      <a href="tel:8094814920" class="contact-card">
+        <div class="icon">📞</div>
+        <div class="label">Julio Daniel Ureña</div>
+        <div class="value">809-481-4920</div>
+      </a>
+      <a href="tel:8096140620" class="contact-card">
+        <div class="icon">📞</div>
+        <div class="label">Johanna M. Olivo</div>
+        <div class="value">809-614-0620</div>
+      </a>
+      <div class="contact-card">
+        <div class="icon">📍</div>
+        <div class="label">Ubicación</div>
+        <div class="value">Gurabo, Santiago</div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">🕐</div>
+        <div class="label">Horario de atención</div>
+        <div class="value">Lun – Vie, 8am – 6pm</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Ureoliv · Abogados Migratorios</div>
+    <div class="footer-copy">© 2025 · Gurabo, Santiago, República Dominicana · Todos los derechos reservados</div>
+  </footer>
+
+</body>
+</html>
